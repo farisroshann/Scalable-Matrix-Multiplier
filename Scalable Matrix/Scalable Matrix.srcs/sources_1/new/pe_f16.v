@@ -27,7 +27,7 @@ module pe_f16(
         input wire [15:0] b_in,
         output reg [15:0] a_out,
         output reg [15:0] b_out,
-        output reg [15:0] accumalator
+        output reg [31:0] accumalator
     );      
     //INTIALIZING
     
@@ -70,11 +70,13 @@ module pe_f16(
             mantissa_result = mantissa_a * mantissa_b;
             
             if(mantissa_result[21]) begin 
-                mul_result[21:0] = mantissa_result >> 1;   
+                mul_result[21:0] = mantissa_result[21:1];   
             end
             else begin 
-                
+                mul_result[21:0] = mantissa_result[20:0];
             end
+            
+            accumalator[31:0] <= accumalator + mul_result;
         end                  
    end
 endmodule
