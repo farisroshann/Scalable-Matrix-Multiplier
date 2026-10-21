@@ -28,55 +28,104 @@ module pe_f16(
         output reg [15:0] a_out,
         output reg [15:0] b_out,
         output reg [31:0] accumalator
-    );      
-    //INTIALIZING
+    );    
+
+
+
+    //UNPACK the fp16 number into mantissa , sign , exponent
+
+    //follow normal fp16 multiplication IEEE754 style
     
     
-    wire sign_a = a_in[15];
+    wire sign_a = a_in[15]; 
     wire sign_b = b_in[15];
-    wire [4:0] exp_a = a_in[14:10];
+
+
+    wire [4:0] exp_a = a_in[14:10];  // 5 bit exponent
     wire [4:0] exp_b = b_in[14:10];
-    wire [13:0] mantissa_a = {1'b1 , a_in[9:0], 3'b000};
-    wire [13:0] mantissa_b = {1'b1 , b_in[9:0], 3'b000};
-    reg [31:0] mul_result;
-    reg [21:0] mantissa_result;
-    //NORMALIZATION
+
+
+    wire [10:0] mantissa_a = {1'b1 , a_in[9:0]};
+    wire [10:0] mantissa_b = {1'b1 , b_in[9:0]};
+
+
+    // MULTIPLICATION
+
+    wire[6:0] exp_out = exp_a + exp_b - 5'd15;
+    wire sign_out = sign_a ^ sign_b;
+    wire [21:0] mantissa_out = mantissa_a * mantissa_b;
+
+    reg [10:0] man_norm;
+    reg [6:0] exp_norm;
+
+    always @(*) begin
+        if(mantissa_out[21]) begin
+            man_norm = mantissa_out[21:11];
+            exp_norm = exp_out + 1'd1;
+        end
+        else begin
+            man_norm = mantissa_out[20:10];
+            exp_norm = exp_out;
+        end
+    end
+
+
+
+    // ADDITION With Accumalator with FP32 conversion
     
-    reg [4:0] exp_max , exp_min;
-    reg [13:0] mantissa_max, mantissa_min;
-    
-    always @(*) begin    // WHY NOT INITIAL
-            if({exp_a, mantissa_a} > {exp_b, mantissa_b}) begin
-                exp_max = exp_a;
-                mantissa_max = mantissa_a;
-                mantissa_min =  mantissa_b >> (exp_a - exp_b);
-            end
-            else begin
-                exp_max = exp_b ;
-                mantissa_max = mantissa_b;
-                mantissa_min =  mantissa_a >> (exp_b - exp_a);     
-            end 
-    end 
-    
-   
-        
-    
-   always @(posedge clk ) begin
-        if(en) begin
-            a_out <= a_in;
-            b_out <= b_in;
-            mul_result[31] = sign_a ^ sign_b;
-            mul_result[30:22] = exp_a + exp_b + 4'b1111;
-            mantissa_result = mantissa_a * mantissa_b;
-            
-            if(mantissa_result[21]) begin 
-                mul_result[21:0] = mantissa_result[21:1];   
-            end
-            else begin 
-                mul_result[21:0] = mantissa_result[20:0];
-            end
-            
-            accumalator[31:0] <= accumalator + mul_result;
-        end                  
-   end
+
+    wire [7:0] exp_out = exp_norm - 5'd15 + 8'd127;
+    wire [21:0] mant_out = {man_norm[9:0] , 13'b0};
+
+
+    wire [31:0] mul_result = {sign_out, exp32 , frac32};
+
+    wire sign_acc = accumulator[31];
+    wire [7:0] exp_acc = accumulator[30:23];
+    wire [22:0] mant_acc = accumulator[22:0];
+
+    reg [7:0] exp_max, exp_min;
+    reg [23:0] mant_max, mant_min;
+    reg sign_max, sign_min;
+
+    always @(*) begin
+        if(exp_acc > exp_out ) begin
+            exp_max = exp_acc;
+            exp_min = exp_out;
+            mant_max = {1'b1 , mant_acc};
+            mant_min = {1'b1 , mant_out} >> (exp_acc - exp_out);
+            sign_max = sign_acc;
+            sign_min = sign_out;
+        end
+        else{
+            exp_max = exp_out;
+            exp_min = exp_acc;
+            sign_max = sign_out;
+            sign_min = sign_acc;
+            mant_max = {1'b1 , mant_out};
+            mant_min = {1'b1 , mant_acc} >> (exp_out - exp_acc);
+        }
+    end
+
+    reg [24:0] mant_sum;
+    reg sign_res;
+
+    always @(*) begin
+        if (sign_max == sign_min) begin
+            sign_res = sign_max;
+            mant_sum = mant_max + mant_min;
+        end
+        else if(sign_max >= sign_min) begin
+            sign_res = sign_max;
+            mant_sum = mant_max - mant_min;
+        end
+        else begin
+            sign_res = sign_min;
+            mant_sum = mant_min - mant_max;
+        end
+    end
+
+
+
+
 endmodule
