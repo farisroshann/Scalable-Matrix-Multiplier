@@ -27,7 +27,7 @@ module pe_f16(
         input wire [15:0] b_in,
         output reg [15:0] a_out,
         output reg [15:0] b_out,
-        output reg [31:0] accumalator
+        output reg [31:0] acc_reg
     );    
 
 
@@ -35,7 +35,7 @@ module pe_f16(
     //UNPACK the fp16 number into mantissa , sign , exponent
 
     //follow normal fp16 multiplication IEEE754 style
-    
+    reg [31:0] accumalator;
     
     wire sign_a = a_in[15]; 
     wire sign_b = b_in[15];
@@ -97,14 +97,14 @@ module pe_f16(
             sign_max = sign_acc;
             sign_min = sign_out;
         end
-        else{
+        else begin
             exp_max = exp_out;
             exp_min = exp_acc;
             sign_max = sign_out;
             sign_min = sign_acc;
             mant_max = {1'b1 , mant_out};
             mant_min = {1'b1 , mant_acc} >> (exp_out - exp_acc);
-        }
+        end
     end
 
     reg [24:0] mant_sum;
