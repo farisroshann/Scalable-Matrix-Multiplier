@@ -1,0 +1,102 @@
+
+*** Running vivado
+    with args -log pe_f16.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source pe_f16.tcl
+
+
+INFO: [Common 17-3922] A valid Vivado Design Suite ALVEO license has been detected. Your current license is active and will expire on 21-sep-2027.
+#-----------------------------------------------------------
+# Vivado v2026.1 (64-bit)
+# SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+# IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+# SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+# Start of session at: Thu Nov 12 20:45:28 2026
+# Process ID         : 32640
+# Current directory  : F:/Scalable Configurable Matrix/Configurable Matrix Multiplier/Scalable Matrix/Scalable Matrix.runs/synth_1
+# Command line       : vivado.exe -log pe_f16.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source pe_f16.tcl
+# Log file           : F:/Scalable Configurable Matrix/Configurable Matrix Multiplier/Scalable Matrix/Scalable Matrix.runs/synth_1/pe_f16.vds
+# Journal file       : F:/Scalable Configurable Matrix/Configurable Matrix Multiplier/Scalable Matrix/Scalable Matrix.runs/synth_1\vivado.jou
+# Running On         : LAPTOP-I2EP2CUD
+# Platform           : Windows 11
+# Operating System   : 26200
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i7-13650HX
+# CPU Frequency      : 2803 MHz
+# CPU Physical cores : 14
+# CPU Logical cores  : 20
+# Host memory        : 25480 MB
+# Swap memory        : 6710 MB
+# Total Virtual      : 32191 MB
+# Available Virtual  : 10541 MB
+#-----------------------------------------------------------
+
+****** Vivado v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Thu Nov 12 20:45:28 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source pe_f16.tcl -notrace
+create_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 676.668 ; gain = 265.730
+Command: synth_design -top pe_f16 -part xcux35-vsva1365-3-e
+Starting synth_design
+Attempting to get a license for feature 'Vivado_Synthesis' and/or device 'xcux35'
+INFO: [Common 17-349] Got license for feature 'Vivado_Synthesis' and/or device 'xcux35'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 10872
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1258.578 ; gain = 574.992
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'pe_f16' [F:/Scalable Configurable Matrix/Configurable Matrix Multiplier/Scalable Matrix/Scalable Matrix.srcs/sources_1/new/pe_f16.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'pe_f16' (0#1) [F:/Scalable Configurable Matrix/Configurable Matrix Multiplier/Scalable Matrix/Scalable Matrix.srcs/sources_1/new/pe_f16.v:23]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1380.824 ; gain = 697.238
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 1380.824 ; gain = 697.238
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xcux35-vsva1365-3-e
+INFO: [Device 21-403] Loading part xcux35-vsva1365-3-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 1380.824 ; gain = 697.238
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1380.824 ; gain = 697.238
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input   25 Bit       Adders := 1     
+	   3 Input    8 Bit       Adders := 4     
++---XORs : 
+	   2 Input      1 Bit         XORs := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
+	               23 Bit    Registers := 1     
+	               16 Bit    Registers := 2     
+	                8 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
++---Muxes : 
+	   2 Input   25 Bit        Muxes := 1     
+	   2 Input   24 Bit        Muxes := 6     
+	   4 Input   23 Bit        Muxes := 1     
+	   2 Input   23 Bit        Muxes := 1     
+	   2 Input   10 Bit        Muxes := 1     
+	   2 Input    8 Bit        Muxes := 2     
+	   2 Input    7 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 24    
+	   2 Input    1 Bit        Muxes := 3     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------

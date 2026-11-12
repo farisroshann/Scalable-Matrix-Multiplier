@@ -1,0 +1,12 @@
+Time resolution is 1 ps
+Time=0 ns | rst=1 en=0 | a_in=0000 b_in=0000 | a_out=xxxx b_out=xxxx | acc_reg=xxxxxxxx
+Time=5000 ns | rst=1 en=0 | a_in=0000 b_in=0000 | a_out=0000 b_out=0000 | acc_reg=00000000
+Time=20000 ns | rst=0 en=0 | a_in=0000 b_in=0000 | a_out=0000 b_out=0000 | acc_reg=00000000
+Time=30000 ns | rst=0 en=1 | a_in=3c00 b_in=4000 | a_out=0000 b_out=0000 | acc_reg=00000000
+Time=35000 ns | rst=0 en=1 | a_in=3c00 b_in=4000 | a_out=3c00 b_out=4000 | acc_reg=00000000
+Time=40000 ns | rst=0 en=1 | a_in=4000 b_in=4200 | a_out=3c00 b_out=4000 | acc_reg=00000000
+Time=45000 ns | rst=0 en=1 | a_in=4000 b_in=4200 | a_out=4000 b_out=4200 | acc_reg=40000000
+Time=50000 ns | rst=0 en=1 | a_in=0000 b_in=4400 | a_out=4000 b_out=4200 | acc_reg=40000000
+Time=55000 ns | rst=0 en=1 | a_in=0000 b_in=4400 | a_out=0000 b_out=4400 | acc_reg=41000000
+Time=70000 ns | rst=0 en=0 | a_in=3c00 b_in=3c00 | a_out=0000 b_out=4400 | acc_reg=41000000
+$finish called at time : 90 ns : File "F:/Scalable Configurable Matrix/Configurable Matrix Multiplier/Scalable Matrix/Scalable Matrix.srcs/sim_1/new/pe_test.v" Line 87
