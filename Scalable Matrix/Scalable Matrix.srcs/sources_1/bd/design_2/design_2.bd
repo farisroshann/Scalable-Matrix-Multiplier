@@ -1,0 +1,1052 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0xEF0F8C9B83BC556D",
+      "device": "xcux35-vsva1365-3-e",
+      "gen_directory": "../../../../Scalable Matrix.gen/sources_1/bd/design_2",
+      "name": "design_2",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2026.1"
+    },
+    "design_tree": {
+      "pe_f16_0": "",
+      "pe_f16_1": "",
+      "pe_f16_2": "",
+      "pe_f16_3": "",
+      "pe_f16_5": "",
+      "pe_f16_6": "",
+      "pe_f16_7": "",
+      "pe_f16_8": "",
+      "pe_f16_4": "",
+      "pe_f16_9": "",
+      "pe_f16_10": "",
+      "pe_f16_11": "",
+      "pe_f16_12": "",
+      "pe_f16_13": "",
+      "pe_f16_14": "",
+      "pe_f16_15": "",
+      "clk_wiz": "",
+      "rst_clk_wiz_100M": ""
+    },
+    "ports": {
+      "clk_100MHz": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "FREQ_HZ": {
+            "value": "100000000"
+          }
+        }
+      },
+      "reset_rtl_0": {
+        "type": "rst",
+        "direction": "I",
+        "parameters": {
+          "POLARITY": {
+            "value": "ACTIVE_HIGH"
+          }
+        }
+      }
+    },
+    "components": {
+      "pe_f16_0": {
+        "vlnv": "xilinx.com:module_ref:pe_f16:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_2_pe_f16_0_0",
+        "xci_path": "ip\\design_2_pe_f16_0_0\\design_2_pe_f16_0_0.xci",
+        "inst_hier_path": "pe_f16_0",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "pe_f16",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "a_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "b_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "a_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "b_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "acc_reg": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "pe_f16_1": {
+        "vlnv": "xilinx.com:module_ref:pe_f16:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_2_pe_f16_0_1",
+        "xci_path": "ip\\design_2_pe_f16_0_1\\design_2_pe_f16_0_1.xci",
+        "inst_hier_path": "pe_f16_1",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "pe_f16",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "a_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "b_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "a_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "b_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "acc_reg": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "pe_f16_2": {
+        "vlnv": "xilinx.com:module_ref:pe_f16:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_2_pe_f16_1_0",
+        "xci_path": "ip\\design_2_pe_f16_1_0\\design_2_pe_f16_1_0.xci",
+        "inst_hier_path": "pe_f16_2",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "pe_f16",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "a_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "b_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "a_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "b_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "acc_reg": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "pe_f16_3": {
+        "vlnv": "xilinx.com:module_ref:pe_f16:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_2_pe_f16_2_0",
+        "xci_path": "ip\\design_2_pe_f16_2_0\\design_2_pe_f16_2_0.xci",
+        "inst_hier_path": "pe_f16_3",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "pe_f16",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "a_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "b_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "a_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "b_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "acc_reg": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "pe_f16_5": {
+        "vlnv": "xilinx.com:module_ref:pe_f16:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_2_pe_f16_0_2",
+        "xci_path": "ip\\design_2_pe_f16_0_2\\design_2_pe_f16_0_2.xci",
+        "inst_hier_path": "pe_f16_5",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "pe_f16",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "a_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "b_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "a_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "b_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "acc_reg": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "pe_f16_6": {
+        "vlnv": "xilinx.com:module_ref:pe_f16:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_2_pe_f16_1_1",
+        "xci_path": "ip\\design_2_pe_f16_1_1\\design_2_pe_f16_1_1.xci",
+        "inst_hier_path": "pe_f16_6",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "pe_f16",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "a_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "b_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "a_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "b_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "acc_reg": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "pe_f16_7": {
+        "vlnv": "xilinx.com:module_ref:pe_f16:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_2_pe_f16_2_2",
+        "xci_path": "ip\\design_2_pe_f16_2_2\\design_2_pe_f16_2_2.xci",
+        "inst_hier_path": "pe_f16_7",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "pe_f16",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "a_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "b_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "a_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "b_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "acc_reg": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "pe_f16_8": {
+        "vlnv": "xilinx.com:module_ref:pe_f16:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_2_pe_f16_3_0",
+        "xci_path": "ip\\design_2_pe_f16_3_0\\design_2_pe_f16_3_0.xci",
+        "inst_hier_path": "pe_f16_8",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "pe_f16",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "a_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "b_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "a_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "b_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "acc_reg": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "pe_f16_4": {
+        "vlnv": "xilinx.com:module_ref:pe_f16:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_2_pe_f16_0_3",
+        "xci_path": "ip\\design_2_pe_f16_0_3\\design_2_pe_f16_0_3.xci",
+        "inst_hier_path": "pe_f16_4",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "pe_f16",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "a_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "b_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "a_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "b_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "acc_reg": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "pe_f16_9": {
+        "vlnv": "xilinx.com:module_ref:pe_f16:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_2_pe_f16_1_2",
+        "xci_path": "ip\\design_2_pe_f16_1_2\\design_2_pe_f16_1_2.xci",
+        "inst_hier_path": "pe_f16_9",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "pe_f16",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "a_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "b_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "a_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "b_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "acc_reg": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "pe_f16_10": {
+        "vlnv": "xilinx.com:module_ref:pe_f16:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_2_pe_f16_2_3",
+        "xci_path": "ip\\design_2_pe_f16_2_3\\design_2_pe_f16_2_3.xci",
+        "inst_hier_path": "pe_f16_10",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "pe_f16",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "a_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "b_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "a_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "b_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "acc_reg": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "pe_f16_11": {
+        "vlnv": "xilinx.com:module_ref:pe_f16:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_2_pe_f16_3_1",
+        "xci_path": "ip\\design_2_pe_f16_3_1\\design_2_pe_f16_3_1.xci",
+        "inst_hier_path": "pe_f16_11",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "pe_f16",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "a_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "b_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "a_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "b_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "acc_reg": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "pe_f16_12": {
+        "vlnv": "xilinx.com:module_ref:pe_f16:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_2_pe_f16_5_0",
+        "xci_path": "ip\\design_2_pe_f16_5_0\\design_2_pe_f16_5_0.xci",
+        "inst_hier_path": "pe_f16_12",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "pe_f16",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "a_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "b_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "a_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "b_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "acc_reg": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "pe_f16_13": {
+        "vlnv": "xilinx.com:module_ref:pe_f16:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_2_pe_f16_6_0",
+        "xci_path": "ip\\design_2_pe_f16_6_0\\design_2_pe_f16_6_0.xci",
+        "inst_hier_path": "pe_f16_13",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "pe_f16",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "a_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "b_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "a_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "b_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "acc_reg": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "pe_f16_14": {
+        "vlnv": "xilinx.com:module_ref:pe_f16:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_2_pe_f16_7_0",
+        "xci_path": "ip\\design_2_pe_f16_7_0\\design_2_pe_f16_7_0.xci",
+        "inst_hier_path": "pe_f16_14",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "pe_f16",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "a_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "b_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "a_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "b_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "acc_reg": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "pe_f16_15": {
+        "vlnv": "xilinx.com:module_ref:pe_f16:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_2_pe_f16_8_0",
+        "xci_path": "ip\\design_2_pe_f16_8_0\\design_2_pe_f16_8_0.xci",
+        "inst_hier_path": "pe_f16_15",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "pe_f16",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "a_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "b_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "a_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "b_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "acc_reg": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "clk_wiz": {
+        "vlnv": "xilinx.com:ip:clk_wiz:6.0",
+        "ip_revision": "19",
+        "xci_name": "design_2_clk_wiz_0",
+        "xci_path": "ip\\design_2_clk_wiz_0\\design_2_clk_wiz_0.xci",
+        "inst_hier_path": "clk_wiz",
+        "has_run_ip_tcl": "true",
+        "parameters": {
+          "CLKOUT1_REQUESTED_OUT_FREQ": {
+            "value": "100.0"
+          }
+        }
+      },
+      "rst_clk_wiz_100M": {
+        "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
+        "ip_revision": "17",
+        "xci_name": "design_2_rst_clk_wiz_100M_0",
+        "xci_path": "ip\\design_2_rst_clk_wiz_100M_0\\design_2_rst_clk_wiz_100M_0.xci",
+        "inst_hier_path": "rst_clk_wiz_100M",
+        "has_run_ip_tcl": "true"
+      }
+    },
+    "nets": {
+      "clk_100MHz_1": {
+        "ports": [
+          "clk_100MHz",
+          "clk_wiz/clk_in1"
+        ]
+      },
+      "clk_wiz_clk_out1": {
+        "ports": [
+          "clk_wiz/clk_out1",
+          "pe_f16_0/clk",
+          "rst_clk_wiz_100M/slowest_sync_clk",
+          "pe_f16_1/clk",
+          "pe_f16_2/clk",
+          "pe_f16_3/clk",
+          "pe_f16_4/clk",
+          "pe_f16_5/clk",
+          "pe_f16_6/clk",
+          "pe_f16_7/clk",
+          "pe_f16_8/clk",
+          "pe_f16_9/clk",
+          "pe_f16_10/clk",
+          "pe_f16_11/clk",
+          "pe_f16_12/clk",
+          "pe_f16_13/clk",
+          "pe_f16_14/clk",
+          "pe_f16_15/clk"
+        ]
+      },
+      "clk_wiz_locked": {
+        "ports": [
+          "clk_wiz/locked",
+          "rst_clk_wiz_100M/dcm_locked"
+        ]
+      },
+      "reset_rtl_0_1": {
+        "ports": [
+          "reset_rtl_0",
+          "clk_wiz/reset",
+          "rst_clk_wiz_100M/ext_reset_in"
+        ]
+      },
+      "rst_clk_wiz_100M_peripheral_aresetn": {
+        "ports": [
+          "rst_clk_wiz_100M/peripheral_aresetn",
+          "pe_f16_0/rst",
+          "pe_f16_1/rst",
+          "pe_f16_2/rst",
+          "pe_f16_3/rst",
+          "pe_f16_4/rst",
+          "pe_f16_5/rst",
+          "pe_f16_6/rst",
+          "pe_f16_7/rst",
+          "pe_f16_8/rst",
+          "pe_f16_9/rst",
+          "pe_f16_10/rst",
+          "pe_f16_11/rst",
+          "pe_f16_12/rst",
+          "pe_f16_13/rst",
+          "pe_f16_14/rst",
+          "pe_f16_15/rst"
+        ]
+      }
+    }
+  }
+}

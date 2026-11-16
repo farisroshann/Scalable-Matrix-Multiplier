@@ -1,0 +1,37 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.553179",
+   "Default View_TopLeft":"-1524,-983",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.8.0 2024-04-26 e1825d835c VDI=44 GEI=38 GUI=JA:24.0 threadsafe
+#  -string -flagsOSRD
+preplace port port-id_clk_100MHz -pg 1 -lvl 0 -x -200 -y -470 -defaultsOSRD
+preplace port port-id_reset_rtl_0 -pg 1 -lvl 0 -x -200 -y -550 -defaultsOSRD
+preplace inst pe_f16_0 -pg 1 -lvl 2 -x 150 -y -270 -defaultsOSRD
+preplace inst pe_f16_1 -pg 1 -lvl 2 -x 150 -y -80 -defaultsOSRD
+preplace inst pe_f16_2 -pg 1 -lvl 2 -x 150 -y 100 -defaultsOSRD
+preplace inst pe_f16_3 -pg 1 -lvl 2 -x 150 -y 290 -defaultsOSRD
+preplace inst pe_f16_5 -pg 1 -lvl 3 -x 460 -y -270 -defaultsOSRD
+preplace inst pe_f16_6 -pg 1 -lvl 3 -x 460 -y -90 -defaultsOSRD
+preplace inst pe_f16_7 -pg 1 -lvl 3 -x 460 -y 90 -defaultsOSRD
+preplace inst pe_f16_8 -pg 1 -lvl 3 -x 460 -y 280 -defaultsOSRD
+preplace inst pe_f16_4 -pg 1 -lvl 5 -x 1040 -y 100 -defaultsOSRD
+preplace inst pe_f16_9 -pg 1 -lvl 5 -x 1040 -y 280 -defaultsOSRD
+preplace inst pe_f16_10 -pg 1 -lvl 5 -x 1040 -y -80 -defaultsOSRD
+preplace inst pe_f16_11 -pg 1 -lvl 5 -x 1040 -y -260 -defaultsOSRD
+preplace inst pe_f16_12 -pg 1 -lvl 4 -x 770 -y 280 -defaultsOSRD
+preplace inst pe_f16_13 -pg 1 -lvl 4 -x 770 -y -260 -defaultsOSRD
+preplace inst pe_f16_14 -pg 1 -lvl 4 -x 770 -y 100 -defaultsOSRD
+preplace inst pe_f16_15 -pg 1 -lvl 4 -x 770 -y -80 -defaultsOSRD
+preplace inst clk_wiz -pg 1 -lvl 1 -x -90 -y -480 -defaultsOSRD
+preplace inst rst_clk_wiz_100M -pg 1 -lvl 3 -x 460 -y -450 -defaultsOSRD
+preplace netloc clk_wiz_clk_out1 1 1 4 10 -420 280 -560 640 -370 910
+preplace netloc clk_wiz_locked 1 1 2 0 -410 N
+preplace netloc rst_clk_wiz_100M_peripheral_aresetn 1 1 4 20 -370 290 -550 630 -360 900
+preplace netloc clk_100MHz_1 1 0 1 NJ -470
+preplace netloc reset_rtl_0_1 1 0 3 -180 -550 20J -470 NJ
+levelinfo -pg 1 -200 -90 150 460 770 1040 1170
+pagesize -pg 1 -db -bbox -sgen -390 -1030 1220 730
+"
+}
+

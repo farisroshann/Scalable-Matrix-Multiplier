@@ -23,6 +23,7 @@
 module systolic_4(
     input clk, 
     input rst,
+    input en,
     input[63:0] a_in,
     input [63:0] b_in,
     output[511:0]sys_out
