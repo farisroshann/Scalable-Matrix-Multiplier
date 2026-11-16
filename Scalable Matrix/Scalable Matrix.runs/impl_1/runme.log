@@ -1,0 +1,803 @@
+
+*** Running vivado
+    with args -log systolic_4.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source systolic_4.tcl -notrace
+
+
+INFO: [Common 17-3922] A valid Vivado Design Suite ALVEO license has been detected. Your current license is active and will expire on 21-sep-2027.
+#-----------------------------------------------------------
+# Vivado v2026.1 (64-bit)
+# SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+# IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+# SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+# Start of session at: Fri Nov 13 19:37:20 2026
+# Process ID         : 30496
+# Current directory  : F:/Scalable Configurable Matrix/Configurable Matrix Multiplier/Scalable Matrix/Scalable Matrix.runs/impl_1
+# Command line       : vivado.exe -log systolic_4.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source systolic_4.tcl -notrace
+# Log file           : F:/Scalable Configurable Matrix/Configurable Matrix Multiplier/Scalable Matrix/Scalable Matrix.runs/impl_1/systolic_4.vdi
+# Journal file       : F:/Scalable Configurable Matrix/Configurable Matrix Multiplier/Scalable Matrix/Scalable Matrix.runs/impl_1\vivado.jou
+# Running On         : LAPTOP-I2EP2CUD
+# Platform           : Windows 11
+# Operating System   : 26200
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i7-13650HX
+# CPU Frequency      : 2803 MHz
+# CPU Physical cores : 14
+# CPU Logical cores  : 20
+# Host memory        : 25480 MB
+# Swap memory        : 6710 MB
+# Total Virtual      : 32191 MB
+# Available Virtual  : 9630 MB
+#-----------------------------------------------------------
+
+****** Vivado v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Fri Nov 13 19:37:20 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source systolic_4.tcl -notrace
+create_project: Time (s): cpu = 00:00:08 ; elapsed = 00:00:05 . Memory (MB): peak = 677.891 ; gain = 266.949
+Command: link_design -top systolic_4 -part xcux35-vsva1365-3-e
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Device 21-403] Loading part xcux35-vsva1365-3-e
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1566.938 ; gain = 0.000
+INFO: [Project 1-479] Netlist was created with Vivado 2026.1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Read ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1605.832 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1775.441 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+4 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+link_design completed successfully
+link_design: Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1780.910 ; gain = 1103.020
+Command: opt_design
+Attempting to get a license for feature 'Vivado_Implementation' and/or device 'xcux35'
+INFO: [Common 17-349] Got license for feature 'Vivado_Implementation' and/or device 'xcux35'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.889 . Memory (MB): peak = 1822.637 ; gain = 41.727
+
+Starting Cache Timing Information Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Ending Cache Timing Information Task | Checksum: 1deca7dad
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2172.312 ; gain = 349.676
+
+Starting Logic Optimization Task
+
+Phase 1 Initialization
+
+Phase 1.1 Core Generation And Design Setup
+Phase 1.1 Core Generation And Design Setup | Checksum: 1deca7dad
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 2675.242 ; gain = 0.000
+
+Phase 1.2 Setup Constraints And Sort Netlist
+Phase 1.2 Setup Constraints And Sort Netlist | Checksum: 1deca7dad
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 2675.242 ; gain = 0.000
+Phase 1 Initialization | Checksum: 1deca7dad
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 2675.242 ; gain = 0.000
+
+Phase 2 Timer Update And Timing Data Collection
+
+Phase 2.1 Detect if minReqCache needed
+Phase 2.1 Detect if minReqCache needed | Checksum: 1deca7dad
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 2675.242 ; gain = 0.000
+
+Phase 2.2 Timer Update
+Phase 2.2 Timer Update | Checksum: 1deca7dad
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.024 . Memory (MB): peak = 2675.242 ; gain = 0.000
+Phase 2 Timer Update And Timing Data Collection | Checksum: 1deca7dad
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.025 . Memory (MB): peak = 2675.242 ; gain = 0.000
+
+Phase 3 Retarget
+INFO: [Opt 31-1851] Number of loadless carry chains removed were: 0
+INFO: [Opt 31-1834] Total Chains To Be Transformed Were: 0 AND Number of Transformed insts Created are: 0
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 3 Retarget | Checksum: 1deca7dad
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.058 . Memory (MB): peak = 2675.242 ; gain = 0.000
+Retarget | Checksum: 1deca7dad
+INFO: [Opt 31-389] Phase Retarget created 0 cells and removed 0 cells
+
+Phase 4 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Phase 4 Constant propagation | Checksum: 1deca7dad
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.062 . Memory (MB): peak = 2675.242 ; gain = 0.000
+Constant propagation | Checksum: 1deca7dad
+INFO: [Opt 31-389] Phase Constant propagation created 0 cells and removed 0 cells
+
+Phase 5 Sweep
+INFO: [Constraints 18-11670] Building netlist checker database with flags, 0x8
+Done building netlist checker database: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2675.242 ; gain = 0.000
+Phase 5 Sweep | Checksum: 1deca7dad
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.070 . Memory (MB): peak = 2675.242 ; gain = 0.000
+Sweep | Checksum: 1deca7dad
+INFO: [Opt 31-389] Phase Sweep created 0 cells and removed 0 cells
+
+Phase 6 BUFG optimization
+INFO: [Opt 31-1077] Phase BUFG optimization inserted 0 global clock buffer(s) for CLOCK_LOW_FANOUT.
+Phase 6 BUFG optimization | Checksum: 1deca7dad
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.084 . Memory (MB): peak = 2675.242 ; gain = 0.000
+BUFG optimization | Checksum: 1deca7dad
+INFO: [Opt 31-662] Phase BUFG optimization created 0 cells of which 0 are BUFGs and removed 0 cells.
+
+Phase 7 Shift Register Optimization
+INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
+Phase 7 Shift Register Optimization | Checksum: 1deca7dad
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.088 . Memory (MB): peak = 2675.242 ; gain = 0.000
+Shift Register Optimization | Checksum: 1deca7dad
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Phase 8 Post Processing Netlist
+Phase 8 Post Processing Netlist | Checksum: 1deca7dad
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.091 . Memory (MB): peak = 2675.242 ; gain = 0.000
+Post Processing Netlist | Checksum: 1deca7dad
+INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
+
+Phase 9 Finalization
+
+Phase 9.1 Finalizing Design Cores and Updating Shapes
+Phase 9.1 Finalizing Design Cores and Updating Shapes | Checksum: 1deca7dad
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.094 . Memory (MB): peak = 2675.242 ; gain = 0.000
+
+Phase 9.2 Verifying Netlist Connectivity
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 2675.242 ; gain = 0.000
+Phase 9.2 Verifying Netlist Connectivity | Checksum: 1deca7dad
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.102 . Memory (MB): peak = 2675.242 ; gain = 0.000
+Phase 9 Finalization | Checksum: 1deca7dad
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.103 . Memory (MB): peak = 2675.242 ; gain = 0.000
+Opt_design Change Summary
+=========================
+
+
+-------------------------------------------------------------------------------------------------------------------------
+|  Phase                        |  #Cells created  |  #Cells Removed  |  #Constrained objects preventing optimizations  |
+-------------------------------------------------------------------------------------------------------------------------
+|  Retarget                     |               0  |               0  |                                              0  |
+|  Constant propagation         |               0  |               0  |                                              0  |
+|  Sweep                        |               0  |               0  |                                              0  |
+|  BUFG optimization            |               0  |               0  |                                              0  |
+|  Shift Register Optimization  |               0  |               0  |                                              0  |
+|  Post Processing Netlist      |               0  |               0  |                                              0  |
+-------------------------------------------------------------------------------------------------------------------------
+
+
+Ending Logic Optimization Task | Checksum: 1deca7dad
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.107 . Memory (MB): peak = 2675.242 ; gain = 0.000
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+Ending Power Optimization Task | Checksum: 1deca7dad
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.025 . Memory (MB): peak = 2675.242 ; gain = 0.000
+
+Starting Final Cleanup Task
+Ending Final Cleanup Task | Checksum: 1deca7dad
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 2675.242 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2675.242 ; gain = 0.000
+INFO: [Common 17-83] Releasing license: Vivado_Implementation
+25 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2675.242 ; gain = 894.332
+INFO: [Vivado 12-24828] Executing command : report_drc -file systolic_4_drc_opted.rpt -pb systolic_4_drc_opted.pb -rpx systolic_4_drc_opted.rpx
+Command: report_drc -file systolic_4_drc_opted.rpt -pb systolic_4_drc_opted.pb -rpx systolic_4_drc_opted.rpx
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'F:/VIVADO/2026.1/Vivado/data/ip'.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file F:/Scalable Configurable Matrix/Configurable Matrix Multiplier/Scalable Matrix/Scalable Matrix.runs/impl_1/systolic_4_drc_opted.rpt.
+report_drc completed successfully
+report_drc: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2675.242 ; gain = 0.000
+generate_parallel_reports: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2675.242 ; gain = 0.000
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 2675.242 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'F:/Scalable Configurable Matrix/Configurable Matrix Multiplier/Scalable Matrix/Scalable Matrix.runs/impl_1/systolic_4_opt.dcp' has been generated.
+Command: place_design
+Attempting to get a license for feature 'Vivado_Implementation' and/or device 'xcux35'
+INFO: [Common 17-349] Got license for feature 'Vivado_Implementation' and/or device 'xcux35'
+INFO: [Common 17-83] Releasing license: Vivado_Implementation
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 2 CPUs
+
+Starting Placer Task
+
+Phase 1 Placer Initialization
+
+Phase 1.1 Placer Initialization Netlist Sorting
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2675.242 ; gain = 0.000
+Phase 1.1 Placer Initialization Netlist Sorting | Checksum: 19e06d1b3
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2675.242 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2675.242 ; gain = 0.000
+
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+ERROR: [Place 30-58] IO placement is infeasible. Number of unplaced IO Ports (512) is greater than number of available pins (364).
+The following are banks with available pins: 
+ IO Group: 0 with : SioStd: LVCMOS18   VCCO = 1.8 Termination: 0  TermDir:  Out  RangeId: 1 Drv: 12  has only 364 sites available on device, but needs 512 sites.
+	Term: sys_out[0]
+	Term: sys_out[1]
+	Term: sys_out[2]
+	Term: sys_out[3]
+	Term: sys_out[4]
+	Term: sys_out[5]
+	Term: sys_out[6]
+	Term: sys_out[7]
+	Term: sys_out[8]
+	Term: sys_out[9]
+	Term: sys_out[10]
+	Term: sys_out[11]
+	Term: sys_out[12]
+	Term: sys_out[13]
+	Term: sys_out[14]
+	Term: sys_out[15]
+	Term: sys_out[16]
+	Term: sys_out[17]
+	Term: sys_out[18]
+	Term: sys_out[19]
+	Term: sys_out[20]
+	Term: sys_out[21]
+	Term: sys_out[22]
+	Term: sys_out[23]
+	Term: sys_out[24]
+	Term: sys_out[25]
+	Term: sys_out[26]
+	Term: sys_out[27]
+	Term: sys_out[28]
+	Term: sys_out[29]
+	Term: sys_out[30]
+	Term: sys_out[31]
+	Term: sys_out[32]
+	Term: sys_out[33]
+	Term: sys_out[34]
+	Term: sys_out[35]
+	Term: sys_out[36]
+	Term: sys_out[37]
+	Term: sys_out[38]
+	Term: sys_out[39]
+	Term: sys_out[40]
+	Term: sys_out[41]
+	Term: sys_out[42]
+	Term: sys_out[43]
+	Term: sys_out[44]
+	Term: sys_out[45]
+	Term: sys_out[46]
+	Term: sys_out[47]
+	Term: sys_out[48]
+	Term: sys_out[49]
+	Term: sys_out[50]
+	Term: sys_out[51]
+	Term: sys_out[52]
+	Term: sys_out[53]
+	Term: sys_out[54]
+	Term: sys_out[55]
+	Term: sys_out[56]
+	Term: sys_out[57]
+	Term: sys_out[58]
+	Term: sys_out[59]
+	Term: sys_out[60]
+	Term: sys_out[61]
+	Term: sys_out[62]
+	Term: sys_out[63]
+	Term: sys_out[64]
+	Term: sys_out[65]
+	Term: sys_out[66]
+	Term: sys_out[67]
+	Term: sys_out[68]
+	Term: sys_out[69]
+	Term: sys_out[70]
+	Term: sys_out[71]
+	Term: sys_out[72]
+	Term: sys_out[73]
+	Term: sys_out[74]
+	Term: sys_out[75]
+	Term: sys_out[76]
+	Term: sys_out[77]
+	Term: sys_out[78]
+	Term: sys_out[79]
+	Term: sys_out[80]
+	Term: sys_out[81]
+	Term: sys_out[82]
+	Term: sys_out[83]
+	Term: sys_out[84]
+	Term: sys_out[85]
+	Term: sys_out[86]
+	Term: sys_out[87]
+	Term: sys_out[88]
+	Term: sys_out[89]
+	Term: sys_out[90]
+	Term: sys_out[91]
+	Term: sys_out[92]
+	Term: sys_out[93]
+	Term: sys_out[94]
+	Term: sys_out[95]
+	Term: sys_out[96]
+	Term: sys_out[97]
+	Term: sys_out[98]
+	Term: sys_out[99]
+	Term: sys_out[100]
+	Term: sys_out[101]
+	Term: sys_out[102]
+	Term: sys_out[103]
+	Term: sys_out[104]
+	Term: sys_out[105]
+	Term: sys_out[106]
+	Term: sys_out[107]
+	Term: sys_out[108]
+	Term: sys_out[109]
+	Term: sys_out[110]
+	Term: sys_out[111]
+	Term: sys_out[112]
+	Term: sys_out[113]
+	Term: sys_out[114]
+	Term: sys_out[115]
+	Term: sys_out[116]
+	Term: sys_out[117]
+	Term: sys_out[118]
+	Term: sys_out[119]
+	Term: sys_out[120]
+	Term: sys_out[121]
+	Term: sys_out[122]
+	Term: sys_out[123]
+	Term: sys_out[124]
+	Term: sys_out[125]
+	Term: sys_out[126]
+	Term: sys_out[127]
+	Term: sys_out[128]
+	Term: sys_out[129]
+	Term: sys_out[130]
+	Term: sys_out[131]
+	Term: sys_out[132]
+	Term: sys_out[133]
+	Term: sys_out[134]
+	Term: sys_out[135]
+	Term: sys_out[136]
+	Term: sys_out[137]
+	Term: sys_out[138]
+	Term: sys_out[139]
+	Term: sys_out[140]
+	Term: sys_out[141]
+	Term: sys_out[142]
+	Term: sys_out[143]
+	Term: sys_out[144]
+	Term: sys_out[145]
+	Term: sys_out[146]
+	Term: sys_out[147]
+	Term: sys_out[148]
+	Term: sys_out[149]
+	Term: sys_out[150]
+	Term: sys_out[151]
+	Term: sys_out[152]
+	Term: sys_out[153]
+	Term: sys_out[154]
+	Term: sys_out[155]
+	Term: sys_out[156]
+	Term: sys_out[157]
+	Term: sys_out[158]
+	Term: sys_out[159]
+	Term: sys_out[160]
+	Term: sys_out[161]
+	Term: sys_out[162]
+	Term: sys_out[163]
+	Term: sys_out[164]
+	Term: sys_out[165]
+	Term: sys_out[166]
+	Term: sys_out[167]
+	Term: sys_out[168]
+	Term: sys_out[169]
+	Term: sys_out[170]
+	Term: sys_out[171]
+	Term: sys_out[172]
+	Term: sys_out[173]
+	Term: sys_out[174]
+	Term: sys_out[175]
+	Term: sys_out[176]
+	Term: sys_out[177]
+	Term: sys_out[178]
+	Term: sys_out[179]
+	Term: sys_out[180]
+	Term: sys_out[181]
+	Term: sys_out[182]
+	Term: sys_out[183]
+	Term: sys_out[184]
+	Term: sys_out[185]
+	Term: sys_out[186]
+	Term: sys_out[187]
+	Term: sys_out[188]
+	Term: sys_out[189]
+	Term: sys_out[190]
+	Term: sys_out[191]
+	Term: sys_out[192]
+	Term: sys_out[193]
+	Term: sys_out[194]
+	Term: sys_out[195]
+	Term: sys_out[196]
+	Term: sys_out[197]
+	Term: sys_out[198]
+	Term: sys_out[199]
+	Term: sys_out[200]
+	Term: sys_out[201]
+	Term: sys_out[202]
+	Term: sys_out[203]
+	Term: sys_out[204]
+	Term: sys_out[205]
+	Term: sys_out[206]
+	Term: sys_out[207]
+	Term: sys_out[208]
+	Term: sys_out[209]
+	Term: sys_out[210]
+	Term: sys_out[211]
+	Term: sys_out[212]
+	Term: sys_out[213]
+	Term: sys_out[214]
+	Term: sys_out[215]
+	Term: sys_out[216]
+	Term: sys_out[217]
+	Term: sys_out[218]
+	Term: sys_out[219]
+	Term: sys_out[220]
+	Term: sys_out[221]
+	Term: sys_out[222]
+	Term: sys_out[223]
+	Term: sys_out[224]
+	Term: sys_out[225]
+	Term: sys_out[226]
+	Term: sys_out[227]
+	Term: sys_out[228]
+	Term: sys_out[229]
+	Term: sys_out[230]
+	Term: sys_out[231]
+	Term: sys_out[232]
+	Term: sys_out[233]
+	Term: sys_out[234]
+	Term: sys_out[235]
+	Term: sys_out[236]
+	Term: sys_out[237]
+	Term: sys_out[238]
+	Term: sys_out[239]
+	Term: sys_out[240]
+	Term: sys_out[241]
+	Term: sys_out[242]
+	Term: sys_out[243]
+	Term: sys_out[244]
+	Term: sys_out[245]
+	Term: sys_out[246]
+	Term: sys_out[247]
+	Term: sys_out[248]
+	Term: sys_out[249]
+	Term: sys_out[250]
+	Term: sys_out[251]
+	Term: sys_out[252]
+	Term: sys_out[253]
+	Term: sys_out[254]
+	Term: sys_out[255]
+	Term: sys_out[256]
+	Term: sys_out[257]
+	Term: sys_out[258]
+	Term: sys_out[259]
+	Term: sys_out[260]
+	Term: sys_out[261]
+	Term: sys_out[262]
+	Term: sys_out[263]
+	Term: sys_out[264]
+	Term: sys_out[265]
+	Term: sys_out[266]
+	Term: sys_out[267]
+	Term: sys_out[268]
+	Term: sys_out[269]
+	Term: sys_out[270]
+	Term: sys_out[271]
+	Term: sys_out[272]
+	Term: sys_out[273]
+	Term: sys_out[274]
+	Term: sys_out[275]
+	Term: sys_out[276]
+	Term: sys_out[277]
+	Term: sys_out[278]
+	Term: sys_out[279]
+	Term: sys_out[280]
+	Term: sys_out[281]
+	Term: sys_out[282]
+	Term: sys_out[283]
+	Term: sys_out[284]
+	Term: sys_out[285]
+	Term: sys_out[286]
+	Term: sys_out[287]
+	Term: sys_out[288]
+	Term: sys_out[289]
+	Term: sys_out[290]
+	Term: sys_out[291]
+	Term: sys_out[292]
+	Term: sys_out[293]
+	Term: sys_out[294]
+	Term: sys_out[295]
+	Term: sys_out[296]
+	Term: sys_out[297]
+	Term: sys_out[298]
+	Term: sys_out[299]
+	Term: sys_out[300]
+	Term: sys_out[301]
+	Term: sys_out[302]
+	Term: sys_out[303]
+	Term: sys_out[304]
+	Term: sys_out[305]
+	Term: sys_out[306]
+	Term: sys_out[307]
+	Term: sys_out[308]
+	Term: sys_out[309]
+	Term: sys_out[310]
+	Term: sys_out[311]
+	Term: sys_out[312]
+	Term: sys_out[313]
+	Term: sys_out[314]
+	Term: sys_out[315]
+	Term: sys_out[316]
+	Term: sys_out[317]
+	Term: sys_out[318]
+	Term: sys_out[319]
+	Term: sys_out[320]
+	Term: sys_out[321]
+	Term: sys_out[322]
+	Term: sys_out[323]
+	Term: sys_out[324]
+	Term: sys_out[325]
+	Term: sys_out[326]
+	Term: sys_out[327]
+	Term: sys_out[328]
+	Term: sys_out[329]
+	Term: sys_out[330]
+	Term: sys_out[331]
+	Term: sys_out[332]
+	Term: sys_out[333]
+	Term: sys_out[334]
+	Term: sys_out[335]
+	Term: sys_out[336]
+	Term: sys_out[337]
+	Term: sys_out[338]
+	Term: sys_out[339]
+	Term: sys_out[340]
+	Term: sys_out[341]
+	Term: sys_out[342]
+	Term: sys_out[343]
+	Term: sys_out[344]
+	Term: sys_out[345]
+	Term: sys_out[346]
+	Term: sys_out[347]
+	Term: sys_out[348]
+	Term: sys_out[349]
+	Term: sys_out[350]
+	Term: sys_out[351]
+	Term: sys_out[352]
+	Term: sys_out[353]
+	Term: sys_out[354]
+	Term: sys_out[355]
+	Term: sys_out[356]
+	Term: sys_out[357]
+	Term: sys_out[358]
+	Term: sys_out[359]
+	Term: sys_out[360]
+	Term: sys_out[361]
+	Term: sys_out[362]
+	Term: sys_out[363]
+	Term: sys_out[364]
+	Term: sys_out[365]
+	Term: sys_out[366]
+	Term: sys_out[367]
+	Term: sys_out[368]
+	Term: sys_out[369]
+	Term: sys_out[370]
+	Term: sys_out[371]
+	Term: sys_out[372]
+	Term: sys_out[373]
+	Term: sys_out[374]
+	Term: sys_out[375]
+	Term: sys_out[376]
+	Term: sys_out[377]
+	Term: sys_out[378]
+	Term: sys_out[379]
+	Term: sys_out[380]
+	Term: sys_out[381]
+	Term: sys_out[382]
+	Term: sys_out[383]
+	Term: sys_out[384]
+	Term: sys_out[385]
+	Term: sys_out[386]
+	Term: sys_out[387]
+	Term: sys_out[388]
+	Term: sys_out[389]
+	Term: sys_out[390]
+	Term: sys_out[391]
+	Term: sys_out[392]
+	Term: sys_out[393]
+	Term: sys_out[394]
+	Term: sys_out[395]
+	Term: sys_out[396]
+	Term: sys_out[397]
+	Term: sys_out[398]
+	Term: sys_out[399]
+	Term: sys_out[400]
+	Term: sys_out[401]
+	Term: sys_out[402]
+	Term: sys_out[403]
+	Term: sys_out[404]
+	Term: sys_out[405]
+	Term: sys_out[406]
+	Term: sys_out[407]
+	Term: sys_out[408]
+	Term: sys_out[409]
+	Term: sys_out[410]
+	Term: sys_out[411]
+	Term: sys_out[412]
+	Term: sys_out[413]
+	Term: sys_out[414]
+	Term: sys_out[415]
+	Term: sys_out[416]
+	Term: sys_out[417]
+	Term: sys_out[418]
+	Term: sys_out[419]
+	Term: sys_out[420]
+	Term: sys_out[421]
+	Term: sys_out[422]
+	Term: sys_out[423]
+	Term: sys_out[424]
+	Term: sys_out[425]
+	Term: sys_out[426]
+	Term: sys_out[427]
+	Term: sys_out[428]
+	Term: sys_out[429]
+	Term: sys_out[430]
+	Term: sys_out[431]
+	Term: sys_out[432]
+	Term: sys_out[433]
+	Term: sys_out[434]
+	Term: sys_out[435]
+	Term: sys_out[436]
+	Term: sys_out[437]
+	Term: sys_out[438]
+	Term: sys_out[439]
+	Term: sys_out[440]
+	Term: sys_out[441]
+	Term: sys_out[442]
+	Term: sys_out[443]
+	Term: sys_out[444]
+	Term: sys_out[445]
+	Term: sys_out[446]
+	Term: sys_out[447]
+	Term: sys_out[448]
+	Term: sys_out[449]
+	Term: sys_out[450]
+	Term: sys_out[451]
+	Term: sys_out[452]
+	Term: sys_out[453]
+	Term: sys_out[454]
+	Term: sys_out[455]
+	Term: sys_out[456]
+	Term: sys_out[457]
+	Term: sys_out[458]
+	Term: sys_out[459]
+	Term: sys_out[460]
+	Term: sys_out[461]
+	Term: sys_out[462]
+	Term: sys_out[463]
+	Term: sys_out[464]
+	Term: sys_out[465]
+	Term: sys_out[466]
+	Term: sys_out[467]
+	Term: sys_out[468]
+	Term: sys_out[469]
+	Term: sys_out[470]
+	Term: sys_out[471]
+	Term: sys_out[472]
+	Term: sys_out[473]
+	Term: sys_out[474]
+	Term: sys_out[475]
+	Term: sys_out[476]
+	Term: sys_out[477]
+	Term: sys_out[478]
+	Term: sys_out[479]
+	Term: sys_out[480]
+	Term: sys_out[481]
+	Term: sys_out[482]
+	Term: sys_out[483]
+	Term: sys_out[484]
+	Term: sys_out[485]
+	Term: sys_out[486]
+	Term: sys_out[487]
+	Term: sys_out[488]
+	Term: sys_out[489]
+	Term: sys_out[490]
+	Term: sys_out[491]
+	Term: sys_out[492]
+	Term: sys_out[493]
+	Term: sys_out[494]
+	Term: sys_out[495]
+	Term: sys_out[496]
+	Term: sys_out[497]
+	Term: sys_out[498]
+	Term: sys_out[499]
+	Term: sys_out[500]
+	Term: sys_out[501]
+	Term: sys_out[502]
+	Term: sys_out[503]
+	Term: sys_out[504]
+	Term: sys_out[505]
+	Term: sys_out[506]
+	Term: sys_out[507]
+	Term: sys_out[508]
+	Term: sys_out[509]
+	Term: sys_out[510]
+	Term: sys_out[511]
+
+
+Resolution: Consider using Xilinx part with greater number of IO pins
+ERROR: [Place 30-374] IO placer failed to find a solution
+Below is the partial placement that can be analyzed to see if any constraint modifications will make the IO placement problem easier to solve.
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                     IO Placement : Bank Stats                                                                           |
++----+-------+-------+------------------------------------------------------------------------+------------------------------------------+--------+--------+--------+-----+
+| Id | Pins  | Terms |                               Standards                                |                IDelayCtrls               |  VREF  |  VCCO  |   VR   | DCI |
++----+-------+-------+------------------------------------------------------------------------+------------------------------------------+--------+--------+--------+-----+
+|  0 |     0 |     0 |                                                                        |                                          |        |        |        |     |
+| 65 |    52 |     0 |                                                                        |                                          |        |        |        |     |
+| 66 |    52 |     0 |                                                                        |                                          |        |        |        |     |
+| 67 |    52 |     0 |                                                                        |                                          |        |        |        |     |
+| 68 |    52 |     0 |                                                                        |                                          |        |        |        |     |
+| 72 |    52 |     0 |                                                                        |                                          |        |        |        |     |
+| 73 |    52 |     0 |                                                                        |                                          |        |        |        |     |
+| 74 |    52 |     0 |                                                                        |                                          |        |        |        |     |
++----+-------+-------+------------------------------------------------------------------------+------------------------------------------+--------+--------+--------+-----+
+|    |   364 |     0 |                                                                        |                                          |        |        |        |     |
++----+-------+-------+------------------------------------------------------------------------+------------------------------------------+--------+--------+--------+-----+
+
+IO Placement:
++--------+----------------------+-----------------+----------------------+----------------------+----------------------+
+| BankId |             Terminal | Standard        | Site                 | Pin                  | Attributes           |
++--------+----------------------+-----------------+----------------------+----------------------+----------------------+
+
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 19e06d1b3
+
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 2675.242 ; gain = 0.000
+Phase 1 Placer Initialization | Checksum: 19e06d1b3
+
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 2675.242 ; gain = 0.000
+ERROR: [Place 30-99] Placer failed with error: 'IO Clock Placer failed'
+Please review all ERROR, CRITICAL WARNING, and WARNING messages during placement to understand the cause for failure.
+Ending Placer Task | Checksum: 19e06d1b3
+
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 2675.242 ; gain = 0.000
+39 Infos, 0 Warnings, 0 Critical Warnings and 4 Errors encountered.
+place_design failed
+place_design: Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 2675.242 ; gain = 0.000
+ERROR: [Common 17-69] Command failed: Placer could not place all instances
+INFO: [Common 17-206] Exiting Vivado at Fri Nov 13 19:38:02 2026...

@@ -1,7 +1,7 @@
 Vivado Simulator v2026.1
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: F:/VIVADO/2026.1/Vivado/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_pe_f16_behav xil_defaultlib.tb_pe_f16 xil_defaultlib.glbl -log elaborate.log 
+Running: F:/VIVADO/2026.1/Vivado/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_systolic_input_behav xil_defaultlib.tb_systolic_input xil_defaultlib.glbl -log elaborate.log 
 INFO: [XSIM 43-3493] Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
@@ -10,6 +10,7 @@ Starting simulation data flow analysis
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
 Compiling module xil_defaultlib.pe_f16
-Compiling module xil_defaultlib.tb_pe_f16
+Compiling module xil_defaultlib.systolic_4_default
+Compiling module xil_defaultlib.tb_systolic_input
 Compiling module xil_defaultlib.glbl
-Built simulation snapshot tb_pe_f16_behav
+Built simulation snapshot tb_systolic_input_behav
