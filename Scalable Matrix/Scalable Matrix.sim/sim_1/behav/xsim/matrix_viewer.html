@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Systolic Array Matrix Inspector (FP16 -> FP32)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #090d16;
+            color: #e2e8f0;
+        }
+        .matrix-cell {
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .matrix-cell:hover {
+            transform: translateY(-1px);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-indigo-500/30 selection:text-indigo-200">
+
+    <!-- Top Navigation & Controls -->
+    <header class="border-b border-slate-800/80 bg-slate-900/70 backdrop-blur-md sticky top-0 z-30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-indigo-500/20 shrink-0">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-lg sm:text-xl font-bold tracking-tight text-white">Systolic Array Matrix Viewer <span class="text-xs font-mono font-normal px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 ml-1">FP16 → FP32</span></h1>
+                    <p class="text-xs text-slate-400">Auto-reading <code class="text-indigo-300">./input_a.txt</code>, <code class="text-cyan-300">./input_b.txt</code> & <code class="text-emerald-300">./output.txt</code></p>
+                </div>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="flex flex-wrap items-center gap-2.5">
+                <!-- Reload Button -->
+                <button id="reloadBtn" onclick="fetchAllFromSameDir()" class="px-3.5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 active:scale-[0.98] text-white text-xs sm:text-sm font-medium transition flex items-center gap-2 shadow-md shadow-indigo-600/20">
+                    <svg id="reloadIcon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                    </svg>
+                    Reload Files
+                </button>
+
+                <!-- Auto-Poll Toggle -->
+                <button id="autoPollBtn" onclick="toggleAutoPoll()" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-xs font-medium transition flex items-center gap-2" title="Automatically re-fetch files every 1 second">
+                    <span id="pollDot" class="w-2 h-2 rounded-full bg-slate-500"></span>
+                    <span id="pollText">Auto-Poll: Off</span>
+                </button>
+
+                <!-- Display Format Selector -->
+                <div class="flex items-center bg-slate-800/90 border border-slate-700/80 rounded-lg p-0.5 text-xs font-medium">
+                    <button data-fmt="both" onclick="setFormat('both')" class="fmt-btn px-2.5 py-1.5 rounded-md bg-slate-700 text-white shadow-sm transition">Hex + Float</button>
+                    <button data-fmt="hex" onclick="setFormat('hex')" class="fmt-btn px-2.5 py-1.5 rounded-md text-slate-400 hover:text-white transition">Hex</button>
+                    <button data-fmt="float" onclick="setFormat('float')" class="fmt-btn px-2.5 py-1.5 rounded-md text-slate-400 hover:text-white transition">Float</button>
+                    <button data-fmt="udec" onclick="setFormat('udec')" class="fmt-btn px-2.5 py-1.5 rounded-md text-slate-400 hover:text-white transition">Raw Int</button>
+                </div>
+
+                <!-- Memory Layout Toggle -->
+                <button id="layoutToggle" onclick="toggleLayout()" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-xs font-medium transition flex items-center gap-1.5" title="Switch how flat 16-line text files map to 4x4 indices">
+                    <span class="text-slate-400">Order:</span>
+                    <span id="layoutLabel" class="text-cyan-400 font-semibold">Row-Major</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+        <!-- Local HTTP Server Warning Banner (shown if opened directly via file://) -->
+        <div id="protocolWarning" class="hidden rounded-xl bg-amber-950/50 border border-amber-500/40 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs sm:text-sm">
+            <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>
+                <div>
+                    <p class="font-semibold text-amber-200">Opened over <code>file://</code> — Browser blocks automatic same-directory reads</p>
+                    <p class="text-amber-300/80 mt-0.5">Run a local server in this folder so the browser can read <code>input_a.txt</code>, <code>input_b.txt</code>, and <code>output.txt</code> automatically:</p>
+                    <div class="mt-2 inline-flex items-center gap-2 bg-slate-950/90 border border-amber-500/30 rounded-lg px-3 py-1.5 font-mono text-xs text-emerald-300">
+                        <span id="serverCmd">python -m http.server 8000</span>
+                        <button onclick="copyServerCmd()" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-sans transition">Copy</button>
+                    </div>
+                    <span class="text-amber-300/80 text-xs ml-2">then open <code class="underline text-amber-200">http://localhost:8000/matrix_viewer.html</code></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status & Verification Summary Bar -->
+        <div id="statusBanner" class="rounded-xl bg-slate-900/90 border border-slate-800 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <span id="statusIndicator" class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse shrink-0"></span>
+                <p id="statusMessage" class="text-sm text-slate-300">
+                    Fetching <span class="font-mono text-white">input_a.txt</span>, <span class="font-mono text-white">input_b.txt</span>, and <span class="font-mono text-white">output.txt</span> from current directory...
+                </p>
+            </div>
+            <div id="verificationBadge" class="hidden items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold shrink-0"></div>
+        </div>
+
+        <!-- 3-Matrix Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <!-- Matrix A Card -->
+            <section id="card-a" class="rounded-2xl bg-slate-900/80 border border-slate-800 p-5 flex flex-col justify-between shadow-xl">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-7 h-7 rounded-lg bg-indigo-500/15 border border-indigo-500/30 text-indigo-400 font-mono font-bold text-sm flex items-center justify-center">A</span>
+                            <div>
+                                <h2 class="text-sm font-semibold text-white">Input Matrix A</h2>
+                                <p class="text-[11px] text-slate-400 font-mono">./input_a.txt (IEEE FP16)</p>
+                            </div>
+                        </div>
+                        <span id="badge-a" class="px-2 py-0.5 rounded-md text-[11px] font-mono bg-slate-800 text-slate-400 border border-slate-700/70">Pending</span>
+                    </div>
+
+                    <!-- 4x4 Matrix Grid A -->
+                    <div id="grid-a" class="grid grid-cols-4 gap-2"></div>
+                </div>
+
+                <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+                    <span id="meta-a">Awaiting ./input_a.txt</span>
+                    <span>4 × 4</span>
+                </div>
+            </section>
+
+            <!-- Matrix B Card -->
+            <section id="card-b" class="rounded-2xl bg-slate-900/80 border border-slate-800 p-5 flex flex-col justify-between shadow-xl">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-7 h-7 rounded-lg bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 font-mono font-bold text-sm flex items-center justify-center">B</span>
+                            <div>
+                                <h2 class="text-sm font-semibold text-white">Input Matrix B</h2>
+                                <p class="text-[11px] text-slate-400 font-mono">./input_b.txt (IEEE FP16)</p>
+                            </div>
+                        </div>
+                        <span id="badge-b" class="px-2 py-0.5 rounded-md text-[11px] font-mono bg-slate-800 text-slate-400 border border-slate-700/70">Pending</span>
+                    </div>
+
+                    <!-- 4x4 Matrix Grid B -->
+                    <div id="grid-b" class="grid grid-cols-4 gap-2"></div>
+                </div>
+
+                <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+                    <span id="meta-b">Awaiting ./input_b.txt</span>
+                    <span>4 × 4</span>
+                </div>
+            </section>
+
+            <!-- Output Matrix C Card -->
+            <section id="card-c" class="rounded-2xl bg-slate-900/80 border border-slate-800 p-5 flex flex-col justify-between shadow-xl">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-7 h-7 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 font-mono font-bold text-sm flex items-center justify-center">C</span>
+                            <div>
+                                <h2 class="text-sm font-semibold text-white">Output Matrix (A × B)</h2>
+                                <p class="text-[11px] text-slate-400 font-mono">./output.txt (IEEE FP32)</p>
+                            </div>
+                        </div>
+                        <span id="badge-c" class="px-2 py-0.5 rounded-md text-[11px] font-mono bg-slate-800 text-slate-400 border border-slate-700/70">Pending</span>
+                    </div>
+
+                    <!-- 4x4 Matrix Grid C -->
+                    <div id="grid-c" class="grid grid-cols-4 gap-2"></div>
+                </div>
+
+                <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+                    <span id="meta-c">Awaiting ./output.txt</span>
+                    <button id="toggleExpectedBtn" onclick="toggleExpectedOverlay()" class="text-indigo-400 hover:text-indigo-300 underline hidden">Show Expected</button>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Dot-Product / MAC Inspector Panel -->
+        <section class="rounded-2xl bg-slate-900/80 border border-slate-800 p-5 shadow-xl">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                    </svg>
+                    <h3 class="text-sm font-semibold text-white">Processing Element (PE) MAC Inspector</h3>
+                </div>
+                <span class="text-xs text-slate-400">Click any cell in Output Matrix <strong class="text-slate-200">C</strong> to inspect its row × column FP16 dot product</span>
+            </div>
+
+            <div id="macInspectorBody" class="rounded-xl bg-slate-950/90 border border-slate-800/90 p-4 font-mono text-xs sm:text-sm text-slate-300 overflow-x-auto">
+                <span class="text-slate-500">Select a cell C[row][col] above to view the multiply-accumulate trace...</span>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Application State
+        const state = {
+            rawA: null,         // Array of 16 numbers (16-bit FP16 raw bits)
+            rawB: null,         // Array of 16 numbers (16-bit FP16 raw bits)
+            rawC: null,         // Array of 16 numbers (32-bit FP32 raw bits)
+            format: 'both',     // 'both' | 'hex' | 'float' | 'udec'
+            rowMajor: true,     // true = index = r*4 + c, false = index = c*4 + r
+            selectedCell: null, // { r, c }
+            showExpected: false,
+            pollTimer: null,
+            lastUpdated: null
+        };
+
+        // Shared typed buffers for exact IEEE 754 FP32 bit conversions
+        const _convBuf = new ArrayBuffer(4);
+        const _convView = new DataView(_convBuf);
+
+        // Decode 16-bit IEEE 754 half-precision (FP16) bits to JS Number
+        function fp16BitsToFloat(bits) {
+            const h = bits & 0xFFFF;
+            const s = (h & 0x8000) ? -1 : 1;
+            const e = (h >> 10) & 0x1F;
+            const m = h & 0x03FF;
+
+            if (e === 0) {
+                if (m === 0) return s === -1 ? -0 : 0;
+                return s * Math.pow(2, -14) * (m / 1024);
+            }
+            if (e === 31) {
+                return m === 0 ? s * Infinity : NaN;
+            }
+            return s * Math.pow(2, e - 15) * (1 + m / 1024);
+        }
+
+        // Decode 32-bit IEEE 754 single-precision (FP32) bits to JS Number
+        function fp32BitsToFloat(bits) {
+            _convView.setUint32(0, bits >>> 0, false);
+            return _convView.getFloat32(0, false);
+        }
+
+        // Encode JS Number to 32-bit IEEE 754 single-precision (FP32) bits
+        function floatToFp32Bits(val) {
+            _convView.setFloat32(0, val, false);
+            return _convView.getUint32(0, false) >>> 0;
+        }
+
+        // Format floating-point number cleanly for display
+        function formatFloatStr(num) {
+            if (Number.isNaN(num)) return 'NaN';
+            if (!Number.isFinite(num)) return num > 0 ? '+Inf' : '-Inf';
+            if (Object.is(num, -0)) return '-0';
+            if (num === 0) return '0';
+            const abs = Math.abs(num);
+            if ((abs >= 1e6 || abs < 1e-4)) {
+                return num.toExponential(4);
+            }
+            return Number(num.toPrecision(6)).toString();
+        }
+
+        // Parse Verilog $readmemh / $fdisplay text content into numbers
+        function parseMatrixText(text, bitWidth) {
+            const cleaned = text
+                .replace(/\/\/.*$/gm, '')
+                .replace(/\/\*[\s\S]*?\*\//g, '')
+                .replace(/@[0-9a-fA-F]+/g, ' ');
+
+            const tokens = cleaned
+                .split(/[\s,;]+/)
+                .map(t => t.trim())
+                .filter(t => t.length > 0);
+
+            if (tokens.length === 0) {
+                throw new Error('File is empty or contains no valid hex tokens.');
+            }
+
+            const values = tokens.slice(0, 16).map((tok, idx) => {
+                if (/x|z/i.test(tok)) {
+                    throw new Error(`Unknown logic value ('${tok}') at entry #${idx}`);
+                }
+                const hexStr = tok.replace(/^0x/i, '');
+                if (!/^[0-9a-fA-F]+$/.test(hexStr)) {
+                    throw new Error(`Invalid hex token '${tok}' at entry #${idx}`);
+                }
+                const val = parseInt(hexStr, 16);
+                if (bitWidth === 16) {
+                    return val & 0xFFFF;
+                }
+                return val >>> 0;
+            });
+
+            while (values.length < 16) {
+                values.push(0);
+            }
+            return values;
+        }
+
+        // Decode raw bits to floating-point value based on bit width
+        function decodeFloat(val, bits) {
+            return bits === 16 ? fp16BitsToFloat(val) : fp32BitsToFloat(val);
+        }
+
+        // Format a value according to active display mode
+        function formatValue(val, bits) {
+            const hexDigits = bits === 16 ? 4 : 8;
+            const unsignedVal = bits === 16 ? (val & 0xFFFF) : (val >>> 0);
+            const hexStr = '0x' + unsignedVal.toString(16).toUpperCase().padStart(hexDigits, '0');
+            const floatVal = decodeFloat(unsignedVal, bits);
+            const floatStr = formatFloatStr(floatVal);
+
+            if (state.format === 'hex') {
+                return { primary: hexStr, secondary: '' };
+            }
+            if (state.format === 'float') {
+                return { primary: floatStr, secondary: '' };
+            }
+            if (state.format === 'udec') {
+                return { primary: unsignedVal.toString(), secondary: '' };
+            }
+            return { primary: hexStr, secondary: floatStr };
+        }
+
+        // Map (row, col) to flat array index
+        function getIndex(r, c) {
+            return state.rowMajor ? (r * 4 + c) : (c * 4 + r);
+        }
+
+        // Compute expected 4x4 matrix product (IEEE FP16 inputs -> IEEE FP32 accumulation)
+        function computeExpectedMatrix() {
+            if (!state.rawA || !state.rawB) return null;
+            const expected = new Array(16).fill(0);
+            for (let r = 0; r < 4; r++) {
+                for (let c = 0; c < 4; c++) {
+                    let sum = 0.0;
+                    for (let k = 0; k < 4; k++) {
+                        const aVal = fp16BitsToFloat(state.rawA[getIndex(r, k)]);
+                        const bVal = fp16BitsToFloat(state.rawB[getIndex(k, c)]);
+                        sum = Math.fround(sum + Math.fround(aVal * bVal));
+                    }
+                    expected[getIndex(r, c)] = floatToFp32Bits(sum);
+                }
+            }
+            return expected;
+        }
+
+        // Compare two FP32 bit patterns (exact bit match or <= 1 ULP rounding tolerance)
+        function fp32ValuesMatch(actualBits, expectedBits) {
+            const a = actualBits >>> 0;
+            const b = expectedBits >>> 0;
+            if (a === b) return true;
+            // Handle +0.0 vs -0.0
+            if (((a & 0x7FFFFFFF) === 0) && ((b & 0x7FFFFFFF) === 0)) return true;
+            const fa = fp32BitsToFloat(a);
+            const fb = fp32BitsToFloat(b);
+            if (Number.isNaN(fa) && Number.isNaN(fb)) return true;
+            if (!Number.isFinite(fa) || !Number.isFinite(fb)) return false;
+            // Allow up to 2 ULPs difference due to FMA vs separate mul+add rounding order
+            if ((a >>> 31) === (b >>> 31) && Math.abs(a - b) <= 2) return true;
+            return false;
+        }
+
+        // Force fetch of ./input_a.txt, ./input_b.txt, and ./output.txt from same directory
+        async function fetchAllFromSameDir() {
+            if (window.location.protocol === 'file:') {
+                document.getElementById('protocolWarning').classList.remove('hidden');
+            }
+
+            const icon = document.getElementById('reloadIcon');
+            icon.classList.add('animate-spin');
+
+            const targets = [
+                { key: 'a', file: './input_a.txt', bits: 16, stateProp: 'rawA' },
+                { key: 'b', file: './input_b.txt', bits: 16, stateProp: 'rawB' },
+                { key: 'c', file: './output.txt',  bits: 32, stateProp: 'rawC' }
+            ];
+
+            const results = await Promise.allSettled(
+                targets.map(async (t) => {
+                    const res = await fetch(`${t.file}?t=${Date.now()}`, { cache: 'no-store' });
+                    if (!res.ok) {
+                        throw new Error(`HTTP ${res.status} (${res.statusText || 'Not Found'})`);
+                    }
+                    const text = await res.text();
+                    const parsed = parseMatrixText(text, t.bits);
+                    return { ...t, parsed };
+                })
+            );
+
+            let loadedCount = 0;
+            const missingFiles = [];
+
+            results.forEach((result, idx) => {
+                const target = targets[idx];
+                const badgeEl = document.getElementById(`badge-${target.key}`);
+                const metaEl = document.getElementById(`meta-${target.key}`);
+
+                if (result.status === 'fulfilled') {
+                    state[target.stateProp] = result.value.parsed;
+                    loadedCount++;
+                    badgeEl.textContent = 'Loaded';
+                    badgeEl.className = 'px-2 py-0.5 rounded-md text-[11px] font-mono bg-emerald-500/15 text-emerald-300 border border-emerald-500/30';
+                    metaEl.textContent = `${target.file} • 16 words`;
+                } else {
+                    state[target.stateProp] = null;
+                    missingFiles.push(target.file.replace('./', ''));
+                    badgeEl.textContent = 'Error';
+                    badgeEl.className = 'px-2 py-0.5 rounded-md text-[11px] font-mono bg-rose-500/15 text-rose-300 border border-rose-500/30';
+                    metaEl.textContent = `${target.file}: ${result.reason.message}`;
+                }
+            });
+
+            state.lastUpdated = new Date().toLocaleTimeString();
+
+            if (loadedCount === 3) {
+                updateStatus(`All 3 files loaded from current directory at ${state.lastUpdated}.`, 'ok');
+            } else {
+                updateStatus(`Loaded ${loadedCount}/3 files (${state.lastUpdated}). Missing or unreadable: ${missingFiles.join(', ')}.`, 'warn');
+            }
+
+            setTimeout(() => icon.classList.remove('animate-spin'), 250);
+            renderAll();
+        }
+
+        // Toggle 1-second automatic file polling
+        function toggleAutoPoll() {
+            const btn = document.getElementById('autoPollBtn');
+            const dot = document.getElementById('pollDot');
+            const txt = document.getElementById('pollText');
+
+            if (state.pollTimer) {
+                clearInterval(state.pollTimer);
+                state.pollTimer = null;
+                dot.className = 'w-2 h-2 rounded-full bg-slate-500';
+                txt.textContent = 'Auto-Poll: Off';
+                btn.classList.remove('border-emerald-500/50', 'text-emerald-300');
+            } else {
+                fetchAllFromSameDir();
+                state.pollTimer = setInterval(fetchAllFromSameDir, 1000);
+                dot.className = 'w-2 h-2 rounded-full bg-emerald-400 animate-ping';
+                txt.textContent = 'Auto-Poll: 1s';
+                btn.classList.add('border-emerald-500/50', 'text-emerald-300');
+            }
+        }
+
+        // Copy Python HTTP server command
+        function copyServerCmd() {
+            const text = document.getElementById('serverCmd').textContent;
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            updateStatus('Copied command to clipboard: ' + text, 'ok');
+        }
+
+        // Update top banner
+        function updateStatus(msg, level = 'info') {
+            const el = document.getElementById('statusMessage');
+            const dot = document.getElementById('statusIndicator');
+            el.textContent = msg;
+
+            dot.className = 'w-2.5 h-2.5 rounded-full shrink-0 ';
+            if (level === 'ok') dot.className += 'bg-emerald-400';
+            else if (level === 'warn') dot.className += 'bg-amber-400';
+            else if (level === 'err') dot.className += 'bg-rose-500';
+            else dot.className += 'bg-indigo-400';
+        }
+
+        // Render all three 4x4 grids + verification status
+        function renderAll() {
+            const expectedC = computeExpectedMatrix();
+            renderGrid('grid-a', state.rawA, 16, 'a', null);
+            renderGrid('grid-b', state.rawB, 16, 'b', null);
+            renderGrid('grid-c', state.rawC, 32, 'c', expectedC);
+            updateVerificationBadge(expectedC);
+            renderMacInspector(expectedC);
+        }
+
+        // Render an individual 4x4 matrix
+        function renderGrid(containerId, dataArr, bits, matrixType, expectedArr) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+
+            for (let r = 0; r < 4; r++) {
+                for (let c = 0; c < 4; c++) {
+                    const idx = getIndex(r, c);
+                    const cell = document.createElement('div');
+
+                    let isHighlighted = false;
+                    let isSelected = false;
+                    if (state.selectedCell) {
+                        if (matrixType === 'a' && state.selectedCell.r === r) isHighlighted = true;
+                        if (matrixType === 'b' && state.selectedCell.c === c) isHighlighted = true;
+                        if (matrixType === 'c' && state.selectedCell.r === r && state.selectedCell.c === c) isSelected = true;
+                    }
+
+                    let baseClasses = 'matrix-cell rounded-xl p-2 sm:p-2.5 border flex flex-col justify-between min-h-[64px] select-all ';
+
+                    if (!dataArr) {
+                        baseClasses += 'bg-slate-950/60 border-slate-800/80 text-slate-600';
+                        cell.innerHTML = `
+                            <div class="text-[10px] font-mono text-slate-600">[${r},${c}]</div>
+                            <div class="font-mono text-xs text-center my-auto">--</div>
+                        `;
+                    } else {
+                        const val = dataArr[idx];
+                        let isMismatch = false;
+                        let isMatch = false;
+
+                        if (matrixType === 'c' && expectedArr) {
+                            if (fp32ValuesMatch(val, expectedArr[idx])) {
+                                isMatch = true;
+                            } else {
+                                isMismatch = true;
+                            }
+                        }
+
+                        if (isSelected) {
+                            baseClasses += 'bg-indigo-950/90 border-indigo-400 ring-2 ring-indigo-400/40 shadow-lg ';
+                        } else if (isHighlighted) {
+                            baseClasses += matrixType === 'a'
+                                ? 'bg-indigo-950/60 border-indigo-500/60 '
+                                : 'bg-cyan-950/60 border-cyan-500/60 ';
+                        } else if (isMismatch) {
+                            baseClasses += 'bg-rose-950/50 border-rose-500/60 hover:border-rose-400 ';
+                        } else if (isMatch) {
+                            baseClasses += 'bg-emerald-950/30 border-emerald-500/30 hover:border-emerald-400/60 ';
+                        } else {
+                            baseClasses += 'bg-slate-950/90 border-slate-800 hover:border-slate-600 ';
+                        }
+
+                        if (matrixType === 'c') {
+                            baseClasses += 'cursor-pointer ';
+                            cell.onclick = () => {
+                                state.selectedCell = { r, c };
+                                renderAll();
+                            };
+                        }
+
+                        const formatted = formatValue(val, bits);
+                        let expectedTag = '';
+                        if (matrixType === 'c' && expectedArr && (isMismatch || state.showExpected)) {
+                            const expFmt = formatValue(expectedArr[idx], 32);
+                            expectedTag = `<div class="text-[10px] font-mono ${isMismatch ? 'text-rose-300' : 'text-emerald-400/80'} truncate mt-0.5" title="Expected FP32: ${expFmt.primary} (${expFmt.secondary})">Exp: ${expFmt.primary}</div>`;
+                        }
+
+                        cell.innerHTML = `
+                            <div class="flex items-center justify-between text-[10px] font-mono text-slate-500">
+                                <span>[${r},${c}]</span>
+                                ${isMismatch ? '<span class="text-rose-400 font-bold">!</span>' : (isMatch ? '<span class="text-emerald-400">✓</span>' : '')}
+                            </div>
+                            <div class="mt-1">
+                                <div class="font-mono text-xs sm:text-[13px] font-semibold text-white truncate" title="${formatted.primary}">${formatted.primary}</div>
+                                ${formatted.secondary ? `<div class="font-mono text-[11px] text-slate-400 truncate">${formatted.secondary}</div>` : ''}
+                                ${expectedTag}
+                            </div>
+                        `;
+                    }
+
+                    container.appendChild(cell);
+                }
+            }
+        }
+
+        // Update verification badge in top banner
+        function updateVerificationBadge(expectedC) {
+            const badge = document.getElementById('verificationBadge');
+            const toggleExpBtn = document.getElementById('toggleExpectedBtn');
+
+            if (!state.rawA || !state.rawB || !state.rawC || !expectedC) {
+                badge.classList.add('hidden');
+                badge.classList.remove('flex');
+                toggleExpBtn.classList.add('hidden');
+                return;
+            }
+
+            toggleExpBtn.classList.remove('hidden');
+            toggleExpBtn.textContent = state.showExpected ? 'Hide Expected' : 'Show Expected';
+
+            let mismatches = 0;
+            for (let i = 0; i < 16; i++) {
+                if (!fp32ValuesMatch(state.rawC[i], expectedC[i])) {
+                    mismatches++;
+                }
+            }
+
+            badge.classList.remove('hidden');
+            badge.classList.add('flex');
+
+            if (mismatches === 0) {
+                badge.className = 'flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30';
+                badge.innerHTML = `<svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> 16/16 Elements Match (FP16 → FP32)`;
+            } else {
+                badge.className = 'flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold bg-rose-500/15 text-rose-300 border border-rose-500/30';
+                badge.innerHTML = `<svg class="w-4 h-4 text-rose-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg> ${mismatches}/16 Mismatches Detected`;
+            }
+        }
+
+        // Render MAC dot-product equation for selected cell C[r][c]
+        function renderMacInspector(expectedC) {
+            const box = document.getElementById('macInspectorBody');
+            if (!state.selectedCell) {
+                box.innerHTML = `<span class="text-slate-500">Select any cell C[row][col] in Output Matrix C to inspect its row × column FP16 MAC computation...</span>`;
+                return;
+            }
+
+            const { r, c } = state.selectedCell;
+            if (!state.rawA || !state.rawB) {
+                box.innerHTML = `<span class="text-amber-400">Cell C[${r}][${c}] selected — ensure both input_a.txt and input_b.txt are present in the folder to compute dot product.</span>`;
+                return;
+            }
+
+            const terms = [];
+            for (let k = 0; k < 4; k++) {
+                const aVal = fp16BitsToFloat(state.rawA[getIndex(r, k)]);
+                const bVal = fp16BitsToFloat(state.rawB[getIndex(k, c)]);
+                const prod = Math.fround(aVal * bVal);
+                terms.push(`<span class="text-indigo-300">(${formatFloatStr(aVal)})</span>×<span class="text-cyan-300">(${formatFloatStr(bVal)})</span> <span class="text-slate-500">[=${formatFloatStr(prod)}]</span>`);
+            }
+
+            const expVal = expectedC[getIndex(r, c)] >>> 0;
+            const expFloat = fp32BitsToFloat(expVal);
+            const expHex = '0x' + expVal.toString(16).toUpperCase().padStart(8, '0');
+
+            let actualHtml = '';
+            if (state.rawC) {
+                const actVal = state.rawC[getIndex(r, c)] >>> 0;
+                const actFloat = fp32BitsToFloat(actVal);
+                const actHex = '0x' + actVal.toString(16).toUpperCase().padStart(8, '0');
+                const ok = fp32ValuesMatch(actVal, expVal);
+                actualHtml = `
+                    <div class="mt-2 pt-2 border-t border-slate-800 flex flex-wrap items-center gap-4 text-xs">
+                        <span>RTL Output (<code class="text-slate-300">output.txt</code>): <strong class="${ok ? 'text-emerald-400' : 'text-rose-400'}">${actHex} (${formatFloatStr(actFloat)})</strong></span>
+                        <span>Expected (<code class="text-slate-300">A×B</code>): <strong class="text-white">${expHex} (${formatFloatStr(expFloat)})</strong></span>
+                        <span class="px-2 py-0.5 rounded ${ok ? 'bg-emerald-500/20 text-emerald-300' : 'bg-rose-500/20 text-rose-300'} font-semibold">
+                            ${ok ? 'PASS' : 'MISMATCH'}
+                        </span>
+                    </div>
+                `;
+            }
+
+            box.innerHTML = `
+                <div class="leading-relaxed">
+                    <span class="text-white font-semibold">C[${r}][${c}]</span> = ${terms.join(' <span class="text-slate-500">+</span> ')}
+                    = <span class="text-emerald-300 font-bold">${formatFloatStr(expFloat)}</span> <span class="text-slate-400">(${expHex})</span>
+                </div>
+                ${actualHtml}
+            `;
+        }
+
+        // UI Controls
+        function setFormat(fmt) {
+            state.format = fmt;
+            document.querySelectorAll('.fmt-btn').forEach(btn => {
+                if (btn.dataset.fmt === fmt) {
+                    btn.className = 'fmt-btn px-2.5 py-1.5 rounded-md bg-slate-700 text-white shadow-sm transition';
+                } else {
+                    btn.className = 'fmt-btn px-2.5 py-1.5 rounded-md text-slate-400 hover:text-white transition';
+                }
+            });
+            renderAll();
+        }
+
+        function toggleLayout() {
+            state.rowMajor = !state.rowMajor;
+            document.getElementById('layoutLabel').textContent = state.rowMajor ? 'Row-Major' : 'Col-Major';
+            renderAll();
+        }
+
+        function toggleExpectedOverlay() {
+            state.showExpected = !state.showExpected;
+            renderAll();
+        }
+
+        // Automatically load ./input_a.txt, ./input_b.txt, and ./output.txt on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderAll();
+            fetchAllFromSameDir();
+        });
+    </script>
+</body>
+</html>

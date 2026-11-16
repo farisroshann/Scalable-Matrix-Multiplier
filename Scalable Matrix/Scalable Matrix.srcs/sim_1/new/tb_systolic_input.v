@@ -9,7 +9,6 @@ module tb_systolic_input;
     reg  [63:0]  b_col_in;
     wire [511:0] acc_out_grid;
 
-    // Verify these port names match your systolic_4 module definition!
     systolic_4 uut (
         .clk     (clk),
         .rst     (rst),
@@ -27,15 +26,14 @@ module tb_systolic_input;
     integer t, i, out_fd;
 
     initial begin
-        
         $dumpfile("systolic_wave.vcd");
         $dumpvars(0, tb_systolic_input);
 
         $readmemh("input_a.txt", mat_a);
         $readmemh("input_b.txt", mat_b);
 
-        if (mat_a[0] === 16'hx || mat_b[0] === 16'hx) begin
-            $display("ERROR: matrix_a.txt or matrix_b.txt failed to load!");
+        if (mat_a[15] === 16'hx || mat_b[15] === 16'hx) begin
+            $display("ERROR: input_a.txt or input_b.txt failed to load!");
             $finish;
         end
 
@@ -50,22 +48,29 @@ module tb_systolic_input;
 
         en = 1'b1;
 
-        for (t = 0; t < 4; t = t + 1) begin
-            a_in     = {mat_a[t*4 + 3], mat_a[t*4 + 2], mat_a[t*4 + 1], mat_a[t*4 + 0]};
-            b_col_in = {mat_b[t*4 + 3], mat_b[t*4 + 2], mat_b[t*4 + 1], mat_b[t*4 + 0]};
+        for (t = 0; t < 7; t = t + 1) begin
+            a_in[15:0]  = (t >= 0 && t < 4) ? mat_a[0*4 + (t - 0)] : 16'd0;
+            a_in[31:16] = (t >= 1 && t < 5) ? mat_a[1*4 + (t - 1)] : 16'd0;
+            a_in[47:32] = (t >= 2 && t < 6) ? mat_a[2*4 + (t - 2)] : 16'd0;
+            a_in[63:48] = (t >= 3 && t < 7) ? mat_a[3*4 + (t - 3)] : 16'd0;
+
+            b_col_in[15:0]  = (t >= 0 && t < 4) ? mat_b[(t - 0)*4 + 0] : 16'd0;
+            b_col_in[31:16] = (t >= 1 && t < 5) ? mat_b[(t - 1)*4 + 1] : 16'd0;
+            b_col_in[47:32] = (t >= 2 && t < 6) ? mat_b[(t - 2)*4 + 2] : 16'd0;
+            b_col_in[63:48] = (t >= 3 && t < 7) ? mat_b[(t - 3)*4 + 3] : 16'd0;
+
             @(negedge clk);
         end
 
         a_in     = 64'd0;
         b_col_in = 64'd0;
 
-
-        repeat (12) @(negedge clk);
+        repeat (10) @(negedge clk);
         en = 1'b0;
 
-        out_fd = $fopen("output_.txt", "w");
+        out_fd = $fopen("output.txt", "w");
         if (out_fd == 0) begin
-            $display("ERROR: Failed to open output_matrix_c.txt");
+            $display("ERROR: Failed to open output.txt");
             $finish;
         end
 
