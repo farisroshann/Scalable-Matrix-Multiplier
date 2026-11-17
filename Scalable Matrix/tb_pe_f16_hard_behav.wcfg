@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_pe_f16_hard_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_pe_f16_hard" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="30.101 ns"></ZoomEndTime>
+      <Cursor1Time time="41.200 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="205"></NameColumnWidth>
+      <ValueColumnWidth column_width="196"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="25" />
+   <wvobject fp_name="/tb_pe_f16_hard/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/en" type="logic">
+      <obj_property name="ElementShortName">en</obj_property>
+      <obj_property name="ObjectShortName">en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/a_in" type="array">
+      <obj_property name="ElementShortName">a_in[15:0]</obj_property>
+      <obj_property name="ObjectShortName">a_in[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/b_in" type="array">
+      <obj_property name="ElementShortName">b_in[15:0]</obj_property>
+      <obj_property name="ObjectShortName">b_in[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/a_out" type="array">
+      <obj_property name="ElementShortName">a_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">a_out[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/b_out" type="array">
+      <obj_property name="ElementShortName">b_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">b_out[15:0]</obj_property>
+      <obj_property name="CustomSignalColor">#008000</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/acc_reg" type="array">
+      <obj_property name="ElementShortName">acc_reg[31:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_reg[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/av" type="array">
+      <obj_property name="ElementShortName">av[0:270][15:0]</obj_property>
+      <obj_property name="ObjectShortName">av[0:270][15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/bv" type="array">
+      <obj_property name="ElementShortName">bv[0:399][15:0]</obj_property>
+      <obj_property name="ObjectShortName">bv[0:399][15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/ev" type="array">
+      <obj_property name="ElementShortName">ev[0:399][31:0]</obj_property>
+      <obj_property name="ObjectShortName">ev[0:399][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/N" type="array">
+      <obj_property name="ElementShortName">N[31:0]</obj_property>
+      <obj_property name="ObjectShortName">N[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/k" type="array">
+      <obj_property name="ElementShortName">k[31:0]</obj_property>
+      <obj_property name="ObjectShortName">k[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/i" type="array">
+      <obj_property name="ElementShortName">i[31:0]</obj_property>
+      <obj_property name="ObjectShortName">i[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/errors" type="array">
+      <obj_property name="ElementShortName">errors[31:0]</obj_property>
+      <obj_property name="ObjectShortName">errors[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/checks" type="array">
+      <obj_property name="ElementShortName">checks[31:0]</obj_property>
+      <obj_property name="ObjectShortName">checks[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/seed" type="array">
+      <obj_property name="ElementShortName">seed[31:0]</obj_property>
+      <obj_property name="ObjectShortName">seed[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/ra" type="array">
+      <obj_property name="ElementShortName">ra[15:0]</obj_property>
+      <obj_property name="ObjectShortName">ra[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/rb" type="array">
+      <obj_property name="ElementShortName">rb[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rb[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/gacc" type="array">
+      <obj_property name="ElementShortName">gacc[31:0]</obj_property>
+      <obj_property name="ObjectShortName">gacc[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/exact" type="other">
+      <obj_property name="ElementShortName">exact</obj_property>
+      <obj_property name="ObjectShortName">exact</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/mag" type="other">
+      <obj_property name="ElementShortName">mag</obj_property>
+      <obj_property name="ObjectShortName">mag</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/pr" type="other">
+      <obj_property name="ElementShortName">pr</obj_property>
+      <obj_property name="ObjectShortName">pr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/d" type="other">
+      <obj_property name="ElementShortName">d</obj_property>
+      <obj_property name="ObjectShortName">d</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pe_f16_hard/NMAX" type="array">
+      <obj_property name="ElementShortName">NMAX[31:0]</obj_property>
+      <obj_property name="ObjectShortName">NMAX[31:0]</obj_property>
+   </wvobject>
+</wave_config>

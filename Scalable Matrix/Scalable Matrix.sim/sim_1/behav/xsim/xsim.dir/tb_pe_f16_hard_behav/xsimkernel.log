@@ -1,7 +1,7 @@
-Running: xsim.dir/tb_pe_f16_hard_behav/xsimk.exe -simmode gui -wdb tb_pe_f16_hard_behav.wdb -simrunnum 0 -socket 3734
+Running: xsim.dir/tb_pe_f16_hard_behav/xsimk.exe -simmode gui -wdb tb_pe_f16_hard_behav.wdb -simrunnum 0 -socket 2734
 Design successfully loaded
-Design Loading Memory Usage: 19560 KB (Peak: 19560 KB)
-Design Loading CPU Usage: 108 ms
+Design Loading Memory Usage: 19528 KB (Peak: 19528 KB)
+Design Loading CPU Usage: 140 ms
 Simulation completed
-Simulation Memory Usage: 20632 KB (Peak: 20632 KB)
-Simulation CPU Usage: 156 ms
+Simulation Memory Usage: 20532 KB (Peak: 20532 KB)
+Simulation CPU Usage: 187 ms
